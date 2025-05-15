@@ -1,12 +1,7 @@
-from langchain_community.embeddings import DatabricksEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 
-def get_embeddings(host, token):
-    """Configura e retorna o modelo de embeddings."""
-    return DatabricksEmbeddings(
-        host=host,
-        api_token=token,
-        endpoint="databricks-bge-large-en"
-    )
+def get_embeddings(config):
+    return HuggingFaceEmbeddings(model_name="BAAI/bge-large-en-v1.5")
 
 def filter_relevant_documents(question, documents, embeddings, keywords, threshold=0.65):
     """Filtra documentos relevantes com base na similaridade e palavras-chave."""
