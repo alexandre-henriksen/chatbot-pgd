@@ -1,6 +1,6 @@
 from langchain.chains import LLMChain
 from langchain.memory import ConversationBufferWindowMemory
-from langchain_community.chat_models import ChatDatabricks
+from langchain_huggingface import HuggingFaceEndpoint
 
 def get_memory(k=3):
     """Configura a memória de conversação."""
@@ -11,14 +11,12 @@ def get_memory(k=3):
         input_key="question"
     )
 
-def get_llm(host, token, max_tokens=4096, temperature=0):
-    """Configura o modelo de linguagem."""
-    return ChatDatabricks(
-        host=host,
-        api_token=token,
-        endpoint="databricks-llama-4-maverick",
-        max_tokens=max_tokens,
-        temperature=temperature,
+def get_llm(config):
+    return HuggingFaceEndpoint(
+        endpoint_url="https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2",
+        huggingfacehub_api_token=config["hf_token"],
+        max_new_tokens=config["max_tokens"],
+        temperature=config["temperature"],
     )
 
 def setup_chain(llm, prompt_template, memory):
