@@ -6,8 +6,7 @@ def load_config():
     load_dotenv()
 
     config = {
-        "databricks_host": os.getenv("DATABRICKS_HOST"),
-        "databricks_token": os.getenv("DATABRICKS_TOKEN"),
+        "hf_token": "HF_TOKEN",
         "db_path": "./chroma_db",
         "docs_dir": "docs",
         "chunk_size": 1500,
@@ -15,7 +14,7 @@ def load_config():
         "similarity_threshold": 0.65,
         "max_tokens": 4096,
         "temperature": 0,
-        "keywords": ["api", "módulos", "pncp", "painel", "catmat", "catser", "compras", "transparência"],
+        "keywords": ["api", "módulos", "pdg", "painel", "plano", "trabalho", "entrega", "registro", "execução", "gestão", "desempenho"],
         "csv_options": {
             "default_delimiter": ",",
             "default_quotechar": '"',
